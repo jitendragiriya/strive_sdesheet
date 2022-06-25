@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+
+//codestudio code
+/*************************************************************
+
+    Following is the Binary Tree node structure
+
+    class BinaryTreeNode
+    {
+    public :
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+*************************************************************/
+
+void helper(BinaryTreeNode<int> *root, BinaryTreeNode<int> *&prev, BinaryTreeNode<int> *&head)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    helper(root->left, prev, head);
+    if (prev == NULL)
+    {
+        head = root;
+    }
+    else
+    {
+        root->left = prev;
+        prev->right = root;
+    }
+    prev = root;
+    helper(root->right, prev, head);
+}
+
+BinaryTreeNode<int> *BTtoDLL(BinaryTreeNode<int> *root)
+{
+    BinaryTreeNode<int> *prev = NULL;
+    BinaryTreeNode<int> *head = NULL;
+
+    helper(root, prev, head);
+    return head;
+} // codestudio code
+
+int main()
+{
+    
+    return 0;
+}
